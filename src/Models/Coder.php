@@ -66,14 +66,14 @@ class Coder
     {
         $database = new Database();
         $query = $database->mysql->query("select * FROM students_db");
-        $studentsArray = $query->fetchAll();
-        $studentList = [];
-        foreach ($studentsArray as $student) {
-            $studentItem = new self($student["name"], $student["subject"], $student["id"], $student["created_at"]);
-            array_push($studentList, $studentItem);
+        $codersArray = $query->fetchAll();
+        $coderList = [];
+        foreach ($codersArray as $coder) {
+            $coderItem = new self($coder["name"], $coder["subject"], $coder["id"], $coder["created_at"]);
+            array_push($coderList, $coderItem);
         }
 
-        return $studentList;
+        return $coderList;
     }
 
     public function deleteById($id)
