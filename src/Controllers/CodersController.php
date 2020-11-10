@@ -45,14 +45,14 @@ class CodersController
     {
         $studentsList = Coder::all();
 
-        new View("StudentsList", [
+        new View("CoderList", [
             "students_db" => $studentsList,
         ]);
     }
 
     public function create(): void
     {
-        new View("CreateStudent");
+        new View("CreateCoder");
     }
 
     public function store(array $request): void
@@ -74,7 +74,7 @@ class CodersController
     public function edit($id)
     {
         $studentToEdit = Coder::findById($id);
-        new View("EditStudent", ["student" => $studentToEdit]);
+        new View("EditCoder", ["student" => $studentToEdit]);
     }
 
     public function update(array $request, $id)
