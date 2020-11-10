@@ -20,16 +20,16 @@
 
             <tbody>
                 <?php
-                foreach ($data["students_db"] as $student) {
+                foreach ($data["students_db"] as $coder) {
                     echo "
                     <tr>
-                        <td>{$student->getId()}</td>
-                        <td>{$student->getName()}</td>
-                        <td>{$student->getSubject()}</td>
-                        <td>{$student->getCreatedAt()}</td>
+                        <td>{$coder->getId()}</td>
+                        <td>{$coder->getName()}</td>
+                        <td>{$coder->getSubject()}</td>
+                        <td>{$coder->getCreatedAt()}</td>
                         <td>               
-                        <a href='?action=edit&id={$student->getId()}'><i class='lnr lnr-pencil'></i></a>
-                        <a href='?action=delete&id={$student->getId()}'><i class='lnr lnr-trash'></i></a>
+                        <a href='?action=edit&id={$coder->getId()}'><i class='lnr lnr-pencil'></i></a>
+                        <a href='?action=delete&id={$coder->getId()}'><i class='lnr lnr-trash'></i></a>
                         </td>
                     </tr>
                     ";

@@ -43,10 +43,10 @@ class CodersController
 
     public function index(): void
     {
-        $studentsList = Coder::all();
+        $codersList = Coder::all();
 
         new View("CoderList", [
-            "students_db" => $studentsList,
+            "students_db" => $codersList,
         ]);
     }
 
@@ -57,32 +57,32 @@ class CodersController
 
     public function store(array $request): void
     {
-        $newStudent = new Coder($request["name"], $request["subject"]);
-        $newStudent->save();
+        $newCoder = new Coder($request["name"], $request["subject"]);
+        $newCoder->save();
 
         $this->index();
     }
 
     public function delete($id)
     {
-        $studentToDelete = Coder::findById($id);
-        $studentToDelete->delete();
+        $coderToDelete = Coder::findById($id);
+        $coderToDelete->delete();
 
         $this->index();
     }
     
     public function edit($id)
     {
-        $studentToEdit = Coder::findById($id);
-        new View("EditCoder", ["student" => $studentToEdit]);
+        $coderToEdit = Coder::findById($id);
+        new View("EditCoder", ["coder" => $coderToEdit]);
     }
 
     public function update(array $request, $id)
     {
-        $studentToUpdate = Coder::findById($id);
-        $studentToUpdate->rename($request["name"]);
-        $studentToUpdate->editSubject($request["subject"]);
-        $studentToUpdate->update();
+        $coderToUpdate = Coder::findById($id);
+        $coderToUpdate->rename($request["name"]);
+        $coderToUpdate->editSubject($request["subject"]);
+        $coderToUpdate->update();
 
         $this->index();
     }
