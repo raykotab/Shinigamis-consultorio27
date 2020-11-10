@@ -6,12 +6,12 @@ namespace App\Models;
 
 use App\Database;
 
-class Student
+class Coder
 {
-    private ?int $id; //Porqué? 
+    private ?int $id; 
     private string $name;
     private string $subject;
-    private ?string $created_at; //Porqué?
+    private ?string $created_at;
     private $database;
     private $table = "students_db";
 
@@ -86,7 +86,7 @@ class Student
         $query = $this->database->mysql->query("DELETE FROM `students_db` WHERE `students_db`.`id` = {$this->id}");
     }
 
-    public static function findById($id): Student
+    public static function findById($id): Coder
     {
         $database = new Database();
         $query = $database->mysql->query("SELECT * FROM `students_db` WHERE `id` = {$id}");

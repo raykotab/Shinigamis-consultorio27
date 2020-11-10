@@ -3,35 +3,35 @@
 namespace App\Controllers;
 
 use App\Core\View;
-use App\Models\Student;
+use App\Models\Coder;
 use phpDocumentor\Reflection\Location; // QUE ES ESTO?
 
-class StudentController
+class CodersController
 {
 
     public function __construct()
     {
-        if (isset($_GET) && ($_GET["action"] == "create")) {
+        if (isset($_GET) && isset($_GET["action"]) && ($_GET["action"] == "create")) {
             $this->create();
             return;
         }
 
-        if (isset($_GET) && ($_GET["action"] == "store")) {
+        if (isset($_GET) && isset($_GET["action"]) && ($_GET["action"] == "store")) {
             $this->store($_POST);
             return;
         }
 
-        if (isset($_GET) && ($_GET["action"] == "edit")) {
+        if (isset($_GET) && isset($_GET["action"]) && ($_GET["action"] == "edit")) {
             $this->edit($_GET["id"]);
             return;
         }
         
-        if (isset($_GET) && ($_GET["action"] == "update")) {
+        if (isset($_GET) && isset($_GET["action"]) && ($_GET["action"] == "update")) {
             $this->update($_POST, $_GET["id"]);
             return;
         }
 
-        if (isset($_GET) && ($_GET["action"] == "delete")) {
+        if (isset($_GET) && isset($_GET["action"]) && ($_GET["action"] == "delete")) {
 
             $this->delete($_GET["id"]);
             return;
@@ -43,7 +43,7 @@ class StudentController
 
     public function index(): void
     {
-        $studentsList = Student::all();
+        $studentsList = Coder::all();
 
         new View("StudentsList", [
             "students_db" => $studentsList,
@@ -57,7 +57,7 @@ class StudentController
 
     public function store(array $request): void
     {
-        $newStudent = new Student($request["name"], $request["subject"]);
+        $newStudent = new Coder($request["name"], $request["subject"]);
         $newStudent->save();
 
         $this->index();
@@ -65,7 +65,7 @@ class StudentController
 
     public function delete($id)
     {
-        $studentToDelete = Student::findById($id);
+        $studentToDelete = Coder::findById($id);
         $studentToDelete->delete();
 
         $this->index();
@@ -73,13 +73,13 @@ class StudentController
     
     public function edit($id)
     {
-        $studentToEdit = Student::findById($id);
+        $studentToEdit = Coder::findById($id);
         new View("EditStudent", ["student" => $studentToEdit]);
     }
 
     public function update(array $request, $id)
     {
-        $studentToUpdate = Student::findById($id);
+        $studentToUpdate = Coder::findById($id);
         $studentToUpdate->rename($request["name"]);
         $studentToUpdate->editSubject($request["subject"]);
         $studentToUpdate->update();
