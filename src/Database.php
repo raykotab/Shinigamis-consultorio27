@@ -22,14 +22,16 @@ class Database
 
     private function getConnection()
     {
+        $data = file_get_contents("src/DbConnection.json");
+        $data = json_decode($data, true);
 
-        $host = "localhost";
-        $user = "root";
-        $pass = "";
-        $database = "students_db";
+        $host = $data['myapp']['master']['hosts'];
+        $user = $data['myapp']['master']['user'];
+        $pass = $data['myapp']['master']['password'];
+        $dbname = $data['myapp']['master']['dbname'];
         $charset = "utf-8";
         $options = [PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC];
-        $pdo = new pdo("mysql:host={$host};dbname={$database};charset{$charset}", $user, $pass, $options);
+        $pdo = new pdo("mysql:host={$host};dbname={$dbname};charset{$charset}", $user, $pass, $options);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $sql = "SELECT * FROM `students_db`";
         return $pdo;
