@@ -10,3 +10,5 @@
     <link rel="stylesheet" href="public/styles/styles.css">
     <title>Coder Request</title>
 </head>
+
+<body>

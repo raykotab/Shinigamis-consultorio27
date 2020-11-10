@@ -1,8 +1,5 @@
-<?php require_once("Components/Layout.php"); ?>
 
-<body>
 
-    <?php require_once("Components/Header.php") ?>
     <main class="container">
         <a href="?action=create">
             <button class="btn btn-primary btn-circle btn-lg">
